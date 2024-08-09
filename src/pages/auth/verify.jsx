@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../../context/UserContext";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Verify = () => {
-  const [otp,setOtp] = useState("");
+  const [otp, setOtp] = useState("");
   const { btnLoading, verifyOtp } = UserData();
-  
+  const [show, setShow] = useState(false);
+
   const navigate = useNavigate();
+
+  function onChange(value) {
+    console.log("Captcha value:", value);
+    setShow(true);
+  }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -28,15 +35,16 @@ const Verify = () => {
             required
             className="w-full p-2 mb-4 border border-gray-300 rounded"
           />
-            
-          <button
-            disabled={btnLoading}
-            type="submit"
-            className="common-btn w-full py-2 bg-cyan-700 text-white rounded mt-2"
-          >
-            {btnLoading ? "Please Wait..." : "Verify"}
-          </button>
-           
+          <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChange} />
+          {show && (
+            <button
+              disabled={btnLoading}
+              type="submit"
+              className="common-btn w-full py-2 bg-cyan-700 text-white rounded mt-2"
+            >
+              {btnLoading ? "Please Wait..." : "Verify"}
+            </button>
+          )}
         </form>
         <p className="mt-4">
           Go to{" "}

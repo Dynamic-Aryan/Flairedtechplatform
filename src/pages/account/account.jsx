@@ -29,6 +29,7 @@ const Account = ({ user }) => {
               <strong className="text-cyan-700">Email - {user.email}</strong>
             </p>
             <div className="flex flex-col gap-6">
+             {user.role ==="user" &&(
               <button
                 onClick={() => navigate(`/${user._id}/dashboard`)}
                 className="flex items-center gap-2 py-3 px-6 bg-cyan-700 text-white rounded-lg transition duration-300 ease-in-out "
@@ -36,6 +37,7 @@ const Account = ({ user }) => {
                 <RiDashboardFill className="text-xl" />
                 Dashboard
               </button>
+             )}
 
               {user.role === "admin" && (
                 <button
