@@ -17,31 +17,27 @@ const CourseStudy = ({ user }) => {
   }, []);
   
   return (
-    <>
+<div className="bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585]">
       {course && (
-        <div className="py-12  flex flex-col items-center min-h-[80vh]">
-          <img src={`${server}/${course.image}`} alt="" width={350} />
-          <h2 className="text-2xl text-cyan-700 text-center mt-4">
-            {course.title}
-          </h2>
-          <h4 className="text-xl text-cyan-700 text-center mt-2">
-            {course.description}
-          </h4>
-          <h5 className="text-lg text-cyan-700 text-center mt-2">
-            by - {course.createdBy}
-          </h5>
-          <h5 className="text-lg text-cyan-700 text-center mt-2">
-            Duration - {course.duration} weeks
-          </h5>
-          <Link
-            to={`/lectures/${course._id}`}
-            className="mt-4 bg-white py-2 px-4 border border-black rounded-md"
-          >
-            <h2>Lectures</h2>
-          </Link>
+        <div className="py-12 flex flex-col items-center min-h-[80vh]">
+          <div className="max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden">
+            <img src={`${server}/${course.image}`} alt={course.title} className="w-full h-64 object-cover" />
+            <div className="p-6">
+              <h2 className="text-3xl font-bold text-gray-700 mb-2">{course.title}</h2>
+              <p className="text-lg text-gray-700 mb-4">{course.description}</p>
+              <p className="text-lg text-gray-600 mb-2">by - {course.createdBy}</p>
+              <p className="text-lg text-gray-600 mb-4">Duration - {course.duration} weeks</p>
+              <Link
+                to={`/lectures/${course._id}`}
+                className="inline-block bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-800"
+              >
+                <h2 className="text-lg font-semibold">Lectures</h2>
+              </Link>
+            </div>
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

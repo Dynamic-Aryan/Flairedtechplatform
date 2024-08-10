@@ -5,7 +5,7 @@ import "./index.css";
 import { UserContextProvider } from "./context/UserContext.jsx";
 import { CourseContextProvider } from "./context/CourseContext.jsx";
 
-export const server = "https://flair-8rsf.onrender.com";
+export const server = "http://localhost:5000";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

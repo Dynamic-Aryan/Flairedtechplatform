@@ -28,26 +28,26 @@ const AdminDashboard = ({ user }) => {
   },[]);
 
   return (
-    <div>
+    <div className="bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585]">
       <Layout>
-        <div className="flex flex-col items-center mt-10 space-y-5">
-          <div className="box bg-gray-400 hover:bg-cyan-500 p-5 shadow-md rounded-md w-full max-w-sm flex  justify-between items-center">
+        <div className="flex flex-col items-center mt-10 space-y-5 ">
+          <div className="box bg-gray-400 hover:bg-gray-500 p-5 shadow-md rounded-md w-full max-w-sm flex  justify-between items-center cursor-pointer">
             <p className="text-white text-lg font-semibold">Total Courses</p>
-            <p className="text-3xl text-cyan-300 font-bold">
+            <p className="text-3xl text-gray-800 font-bold">
               {stats.totalCourses}
             </p>
           </div>
-          <div className="box bg-gray-400 hover:bg-cyan-500 p-5 shadow-md rounded-md w-full max-w-sm flex justify-between items-center">
+          <div className="box bg-gray-400 hover:bg-gray-500 p-5 shadow-md rounded-md w-full max-w-sm flex justify-between items-center cursor-pointer">
             <p className="text-white text-lg font-semibold">
               Total Lectures
             </p>
-            <p className="text-3xl text-cyan-300 font-bold">
+            <p className="text-3xl text-gray-800 font-bold">
               {stats.totalLectures}
             </p>
           </div>
-          <div className="box bg-gray-400 hover:bg-cyan-500 p-5 shadow-md rounded-md w-full max-w-sm flex justify-between items-center">
+          <div className="box bg-gray-400 hover:bg-gray-500 p-5 shadow-md rounded-md w-full max-w-sm flex justify-between items-center cursor-pointer">
             <p className="text-white text-lg font-semibold ">Total Users</p>
-            <p className="text-3xl text-cyan-300  font-bold">
+            <p className="text-3xl text-gray-800  font-bold">
               {stats.totalUsers}
             </p>
           </div>

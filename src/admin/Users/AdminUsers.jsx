@@ -9,7 +9,7 @@ import { server } from '../../main';
 const AdminUsers = ({user}) => {
     const navigate = useNavigate();
 
-    if(user && user.role !== "admin") return navigate("/");
+    if(user && user.mainrole !== "superadmin") return navigate("/");
     const [users,setUsers]=useState([]);
 
     async function fetchUsers() {
@@ -51,6 +51,7 @@ const AdminUsers = ({user}) => {
       };
     
   return (
+    <div className="bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585] flex">
     <Layout>
     <div className="flex flex-col items-center mt-10 px-4 ">
       <h1 className="text-3xl font-bold mb-6">All Users</h1>
@@ -89,6 +90,7 @@ const AdminUsers = ({user}) => {
       </div>
     </div>
   </Layout>
+  </div>
   )
 }
 

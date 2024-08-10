@@ -13,7 +13,7 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="py-20 text-center min-h-[55vh]">
+    <div className="py-20 text-center min-h-[55vh] bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585]">
       <h2 className="text-2xl font-semibold mb-10">All Enrolled Courses</h2>
       <div className="flex justify-around flex-wrap gap-5 mt-10">
         {purchasedCourses && purchasedCourses.length > 0 ? (

@@ -15,8 +15,10 @@ const Account = ({ user }) => {
     toast.success("Logged Out Successfully...");
     navigate("/login");
   }
+  
   return (
-    <div className="bg-gray-100 p-10 rounded-lg shadow-md max-w-md mx-auto md:mt-28 mb-32">
+   <div >
+     <div className="bg-gray-100 p-10 rounded-lg shadow-md max-w-md mx-auto md:mt-28 mb-32">
       {user && (
         <div>
           {" "}
@@ -32,7 +34,7 @@ const Account = ({ user }) => {
              {user.role ==="user" &&(
               <button
                 onClick={() => navigate(`/${user._id}/dashboard`)}
-                className="flex items-center gap-2 py-3 px-6 bg-cyan-700 text-white rounded-lg transition duration-300 ease-in-out "
+                className="flex items-center gap-2 py-3 px-6 bg-gray-700 text-white rounded-lg transition duration-300 ease-in-out "
               >
                 <RiDashboardFill className="text-xl" />
                 Dashboard
@@ -42,7 +44,7 @@ const Account = ({ user }) => {
               {user.role === "admin" && (
                 <button
                   onClick={() => navigate(`/admin/dashboard`)}
-                  className="flex items-center gap-2 py-3 px-6 bg-cyan-700 text-white rounded-lg transition duration-300 ease-in-out "
+                  className="flex items-center gap-2 py-3 px-6 bg-gray-700 text-white rounded-lg transition duration-300 ease-in-out "
                 >
                   <RiDashboardLine className="text-xl" />
                   Admin Dashboard
@@ -61,6 +63,7 @@ const Account = ({ user }) => {
         </div>
       )}
     </div>
+   </div>
   );
 };
 

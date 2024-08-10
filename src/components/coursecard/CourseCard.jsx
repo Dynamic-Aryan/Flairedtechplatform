@@ -27,20 +27,20 @@ const CourseCard = ({ course }) => {
   }
   }
   return (
-    <div className="bg-white shadow-md p-5 rounded-lg text-center w-72 transition-shadow duration-300 hover:shadow-lg">
+    <div className="bg-white shadow-md p-5 rounded-lg text-center w-96 transition-shadow duration-300 hover:shadow-lg">
       <img
         src={`${server}/${course.image}`}
         alt=""
         className="w-full h-40 object-cover rounded-lg mb-4"
       />
-      <h3 className="text-lg text-gray-800 mb-2 font-bold">{course.title}</h3>
-      <p className="text-sm text-gray-600 mb-1">
+      <h3 className="text-xl text-gray-800 mb-2 font-bold ">{course.title}</h3>
+      <p className="text-sm text-gray-600 mb-1 text-left">
         <span className="font-semibold">Instructor</span>- {course.createdBy}
       </p>
-      <p className="text-sm text-gray-600 mb-1">
+      <p className="text-sm text-gray-600 mb-1 text-left">
         <span className="font-semibold">Duration</span>- {course.duration} weeks
       </p>
-      <p className="text-sm text-gray-600 mb-3"><span className="font-semibold">Price</span>- ₹ {course.price}</p>
+      <p className="text-sm text-gray-600 mb-3 text-left"><span className="font-semibold">Price</span>- ₹ {course.price}</p>
       <div className="flex flex-col ">
       {isAuth ? (
         <>
@@ -49,14 +49,14 @@ const CourseCard = ({ course }) => {
               {user.subscription.includes(course._id) ? (
                 <button
                   onClick={() => navigate(`/course/study/${course._id}`)}
-                  className="common-btn py-3 px-6 bg-cyan-700 text-white rounded-lg"
+                  className="common-btn py-3 px-6 bg-gray-700 text-white rounded-lg"
                 >
                   Study
                 </button>
               ) : (
                 <button
                   onClick={() => navigate(`/course/${course._id}`)}
-                  className="common-btn py-3 px-6 bg-cyan-700 text-white rounded-lg"
+                  className="common-btn py-3 px-6 bg-gray-700 text-white rounded-lg"
                 >
                   Get Started
                 </button>
@@ -65,14 +65,14 @@ const CourseCard = ({ course }) => {
           ) : (
             <button
               onClick={() => navigate(`/course/study/${course._id}`)}
-              className="common-btn py-3 px-6 bg-cyan-700 text-white rounded-lg"
+              className="common-btn py-3 px-6 bg-gray-700 text-white rounded-lg"
             >
               Study
             </button>
           )}
         </>
       ) : (
-        <button onClick={() => navigate("/login")} className="common-btn py-3 px-6 bg-cyan-700 text-white rounded-lg">
+        <button onClick={() => navigate("/login")} className="common-btn py-3 px-6 bg-gray-700 text-white rounded-lg">
           Get Started
         </button>
       )}

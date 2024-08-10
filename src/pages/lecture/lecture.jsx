@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { server } from "../../main";
 import Loading from "../../components/loading/loading";
 import toast from "react-hot-toast";
+import { SiTicktick } from "react-icons/si";
 
 const Lecture = ({ user }) => {
   const [lectures, setLectures] = useState([]);
@@ -107,17 +108,66 @@ const Lecture = ({ user }) => {
         toast.error(error.response.data.message);
       }
     }
+  };
+
+  const [completed, setCompleted] = useState("");
+  const [completedLec, setCompletedLec] = useState("");
+  const [lectLength, setLectLength] = useState("");
+  const [progress, setProgress] = useState([]);
+
+  async function fetchProgress() {
+    try {
+      const { data } = await axios.get(
+        `${server}/api/user/progress?course=${params.id}`,
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      setCompleted(data.courseProgressPercentage);
+      setCompletedLec(data.completedLectures);
+      setLectLength(data.allLectures);
+      setProgress(data.progress);
+    } catch (error) {
+      console.log(error);
+    }
   }
+  const addProgress = async (id) => {
+    try {
+      const { data } = await axios.post(
+        `${server}/api/user/progress?course=${params.id}&lectureId=${id}`,
+        {},
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(data.message);
+      fetchProgress();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchLectures();
   }, []);
 
   return (
-    <>
+    <div className="bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585]" >
       {loading ? (
         <Loading />
       ) : (
         <>
+        <div className="w-full bg-gray-800 p-2 rounded-md my-2 mx-auto text-center text-white">
+            Lecture completed - {completedLec} out of {lectLength} <br />
+            <progress value={completed} max={100} className="w-full"></progress>{" "}
+            {completed} %
+          </div>
+
           <div className="flex justify-between min-h-[80vh] flex-col md:flex-row">
             <div className="md:w-[70%] w-full p-2">
               {lecLoading ? (
@@ -134,16 +184,17 @@ const Lecture = ({ user }) => {
                         disablePictureInPicture
                         disableRemotePlayback
                         autoPlay
+                        onEnded={()=>addProgress(lecture._id)}
                       ></video>
-                      <h1 className="text-xl text-cyan-700 text-center">
+                      <h1 className="text-xl text-gray-700 text-center">
                         {lecture.title}
                       </h1>
-                      <h3 className="text-lg text-cyan-700 text-center">
+                      <h3 className="text-lg text-gray-700 text-center">
                         {lecture.description}
                       </h3>
                     </>
                   ) : (
-                    <h1 className="text-xl text-cyan-700 text-center">
+                    <h1 className="text-xl text-gray-700 text-center">
                       Select a Lecture
                     </h1>
                   )}
@@ -153,7 +204,7 @@ const Lecture = ({ user }) => {
             <div className="md:w-[30%] w-full">
               {user && user.role === "admin" && (
                 <button
-                  className="bg-cyan-700 text-white px-4 py-2 rounded-md mb-4"
+                  className="bg-gray-700 text-white px-4 py-2 rounded-md mb-4"
                   onClick={() => setShow(!show)}
                 >
                   {show ? "Close" : "Add Lecture +"}
@@ -161,7 +212,7 @@ const Lecture = ({ user }) => {
               )}
               {show && (
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h2 className="text-xl text-cyan-700 mb-4 text-center">
+                  <h2 className="text-xl text-gray-700 mb-4 text-center">
                     Add Lectures
                   </h2>
                   <form onSubmit={submitHandler} className="text-left">
@@ -200,7 +251,7 @@ const Lecture = ({ user }) => {
                     <button
                      disabled={btnLoading}
                       type="submit"
-                      className="bg-cyan-700 text-white px-4 py-2 rounded-md w-full"
+                      className="bg-gray-700 text-white px-4 py-2 rounded-md w-full"
                     >
                       {btnLoading ?"Please Wait...":"Add"}
                     </button>
@@ -215,10 +266,16 @@ const Lecture = ({ user }) => {
                       onClick={() => fetchLecture(e._id)}
                       key={i}
                       className={`bg-white p-3 border border-black rounded-md mt-2 cursor-pointer text-center ${
-                        lecture._id === e._id && "bg-cyan-700 text-white"
+                        lecture._id === e._id && "bg-gray-700 text-white"
                       }`}
                     >
                       {i + 1}.{e.title}
+                      {progress[0] &&
+                        progress[0].completedLectures.includes(e._id) && (
+                          <span className="bg-red-600 p-1 rounded-md text-green-400">
+                            <SiTicktick />
+                          </span>
+                        )}
                     </div>
                     {user && user.role === "admin" && (
                       <button
@@ -238,7 +295,7 @@ const Lecture = ({ user }) => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

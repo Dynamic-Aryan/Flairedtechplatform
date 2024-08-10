@@ -91,7 +91,8 @@ const AdminCourses = ({ user }) => {
   };
 
   return (
-    <Layout>
+    <div className="bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585] flex">
+      <Layout>
       <div className="flex flex-wrap justify-center gap-4 p-4">
         <div className="flex-1 min-w-[300px]">
           <h1 className="text-2xl font-bold mb-4">All Courses</h1>
@@ -106,8 +107,8 @@ const AdminCourses = ({ user }) => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center min-w-[300px] bg-white p-5 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold text-cyan-700 mb-4">Add Course</h2>
+        <div className="flex flex-col items-center min-w-[500px] bg-gradient-to-t from-[rgb(71,72,72)] to-[#a8a6a6] p-5 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold text-gray-700 mb-4">Add Course</h2>
           <form onSubmit={submitHandler} className="w-full">
             <label htmlFor="title" className="block mb-2 text-gray-700">
               Title
@@ -204,7 +205,7 @@ const AdminCourses = ({ user }) => {
             <button
               type="submit"
               disabled={btnLoading}
-              className="w-full bg-cyan-700 text-white py-2 rounded-md hover:bg-cyan-800"
+              className="w-full bg-gray-700 text-white py-2 rounded-md hover:bg-cyan-800"
             >
               {btnLoading ? "Please Wait..." : "Add"}
             </button>
@@ -212,6 +213,7 @@ const AdminCourses = ({ user }) => {
         </div>
       </div>
     </Layout>
+    </div>
   );
 };
 

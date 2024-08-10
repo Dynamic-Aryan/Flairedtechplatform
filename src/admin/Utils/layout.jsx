@@ -3,7 +3,7 @@ import Sidebar from "./sidebar";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex min-h-[80vh] mt-5">
+    <div className="flex min-h-[80vh] ">
       <Sidebar />
       <div className="flex-grow p-4">{children}</div>
     </div>

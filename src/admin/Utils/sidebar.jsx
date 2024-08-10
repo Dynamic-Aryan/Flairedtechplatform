@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
     const {user}= UserData();
   return (
-    <div className="w-48 h-full text-white bg-cyan-800 border-r border-gray-500">
+    <div className="w-48 h-full text-white bg-gray-950 border-r border-gray-500">
     <ul className="list-none p-0">
       <li className="mb-2 cursor-pointer p-3 hover:bg-gray-600">
         <Link to="/admin/dashboard" className="flex items-center text-white">
@@ -25,12 +25,16 @@ const Sidebar = () => {
       </li>
 
      
-        <li className="mb-2 cursor-pointer p-3 hover:bg-gray-600">
+        {
+          user && user.mainrole === "superadmin" && (
+            <li className="mb-2 cursor-pointer p-3 hover:bg-gray-600">
           <Link to="/admin/users" className="flex items-center text-white">
             <FaUserAlt className="mr-2" />
             <span>Users</span>
           </Link>
         </li>
+          )
+        }
       
 
       <li className="cursor-pointer p-3 hover:bg-gray-600">

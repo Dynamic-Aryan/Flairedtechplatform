@@ -24,7 +24,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 const App = () => {
   const { isAuth, user, loading } = UserData();
   return (
-    <div className="m-0 p-0 box-border font-sans bg-gray-300 min-h-screen">
+    <div className="m-0 p-0 box-border font-sans bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585]  min-h-screen">
       {loading ? (
         <Loading />
       ) : (
