@@ -1,6 +1,6 @@
 # FLAIR
 
-This is a [React.js] project ,,it's deployed at [FLAIR](https://flair-fe.vercel.app/) currently it is running here.
+This is a [React.js] project ,,it's deployed at [FLAIR](https://flairorg.vercel.app/) currently it is running here.
 
 
 ## Getting Started
