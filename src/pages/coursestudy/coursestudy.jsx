@@ -27,6 +27,10 @@ const CourseStudy = ({ user }) => {
               src={`${server}/${course.image}`}
               alt={course.title}
               className="w-full h-64 object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVyxdAZkpMRYodcJYb7GR4pgFD__4xZZt1Tw&s";
+              }}
             />
             <div className="p-6">
               <h2 className="text-3xl font-semibold text-gray-800 mb-2">{course.title}</h2>
