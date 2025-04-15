@@ -24,7 +24,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 const App = () => {
   const { isAuth, user, loading } = UserData();
   return (
-    <div className="m-0 p-0 box-border font-sans bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585]  min-h-screen">
+    <div className="m-0 p-0 box-border font-sans bg-gradient-to-t from-slate-50 to-teal-100 min-h-screen">
       {loading ? (
         <Loading />
       ) : (
@@ -44,8 +44,14 @@ const App = () => {
               element={isAuth ? <Home /> : <Register />}
             />
             <Route path="/verify" element={isAuth ? <Home /> : <Verify />} />
-            <Route path="/forgot" element={isAuth ? <Home /> : <ForgotPassword />} />
-            <Route path="/reset-password/:token" element={isAuth ? <Home /> : <ResetPassword />} />
+            <Route
+              path="/forgot"
+              element={isAuth ? <Home /> : <ForgotPassword />}
+            />
+            <Route
+              path="/reset-password/:token"
+              element={isAuth ? <Home /> : <ResetPassword />}
+            />
             <Route
               path="/course/:id"
               element={isAuth ? <CourseDescription user={user} /> : <Login />}
@@ -78,7 +84,6 @@ const App = () => {
               path="/admin/users"
               element={isAuth ? <AdminUsers user={user} /> : <Login />}
             />
-            
           </Routes>
           <Footer />
         </BrowserRouter>

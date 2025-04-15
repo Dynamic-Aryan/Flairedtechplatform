@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { server } from "../../main";
-
+import { Input, Button } from "antd";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -30,21 +30,23 @@ const ForgotPassword = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Forgot Password</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email" className="block mb-2 text-gray-600">Enter Email</label>
-          <input
+          <Input
             type="email"
             id="email"
-            className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
             required
+            className="mb-4"
           />
-          <button
-            type="submit"
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="w-full py-2"
             disabled={btnLoading}
-            className={`w-full p-2 rounded text-white ${btnLoading ? 'bg-cyan-400' : 'bg-cyan-600 hover:bg-cyan-700'} transition-all duration-200`}
           >
             {btnLoading ? "Please Wait..." : "Forgot Password"}
-          </button>
+          </Button>
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { server } from "../../main";
+import { Input, Button } from "antd";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -33,22 +34,25 @@ const ResetPassword = () => {
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Reset Password</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="password" className="block mb-2 text-gray-600">Enter Password</label>
-          <input
-            type="password"
+          <label htmlFor="password" className="block mb-2 text-gray-600">
+            Enter Password
+          </label>
+          <Input.Password
             id="password"
-            className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none "
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter your new password"
+            className="mb-4"
           />
-          <button
-            type="submit"
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="w-full py-2"
             disabled={btnLoading}
-            className={`w-full p-2 rounded text-white ${btnLoading ? 'bg-cyan-400' : 'bg-cyan-600 hover:bg-cyan-700'} transition-all duration-200`}
           >
             {btnLoading ? "Please Wait..." : "Reset Password"}
-          </button>
+          </Button>
         </form>
       </div>
     </div>

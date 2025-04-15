@@ -1,49 +1,96 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa"; // Importing icons
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Button, Menu, Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 
 const Header = ({ isAuth }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="1">
+        <Link to="/">Home</Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/courses">Courses</Link>
+      </Menu.Item>
+      {isAuth ? (
+        <Menu.Item key="3">
+          <Link to="/account">Account</Link>
+        </Menu.Item>
+      ) : (
+        <Menu.Item key="4">
+          <Link to="/login">Login</Link>
+        </Menu.Item>
+      )}
+    </Menu>
+  );
 
   return (
-    <header className="flex justify-between items-center p-6 bg-gradient-to-t from-[rgb(21,20,20)] via-[rgb(47,41,41)] to-[rgb(5,11,14)] shadow-md relative z-50"> {/* Set z-index here */}
-      <div className="text-lg font-semibold text-gray-400 md:text-3xl md:ml-10">
-        F_L_A_I_<span className="font-bold text-white">R</span>
+    <header className="flex justify-between items-center p-6 bg-gradient-to-t from-slate-50 to-teal-100 shadow-lg">
+      {/* Logo/Branding */}
+      <div className="text-4xl font-extrabold text-teal-800">
+        FLAIR
       </div>
 
-      {/* Menu icon for mobile view */}
+      {/* Mobile Menu Icon */}
       <div className="md:hidden">
-        <button onClick={toggleMenu} className="text-slate-200 text-xl">
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
+        <Button
+          onClick={toggleMenu}
+          className="text-gray-800 text-3xl focus:outline-none hover:text-teal-600 transition duration-300"
+          icon={menuOpen ? <FaTimes /> : <FaBars />}
+        />
       </div>
 
-      {/* Desktop Menu - Always visible */}
-      <div className="hidden md:flex gap-5 md:gap-16">
-        <Link to="/" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">o1Home</Link>
-        <Link to="/courses" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">10Courses</Link>
-        
+      {/* Desktop Menu */}
+      <nav className="hidden md:flex gap-8 text-lg text-teal-700">
+        <Link
+          to="/"
+          className="relative py-2 px-4 hover:bg-teal-200 rounded-md transition duration-300 group"
+        >
+          Home
+          <span className="absolute left-0 bottom-0 w-full h-[2px] bg-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+        </Link>
+        <Link
+          to="/courses"
+          className="relative py-2 px-4 hover:bg-teal-200 rounded-md transition duration-300 group"
+        >
+          Courses
+          <span className="absolute left-0 bottom-0 w-full h-[2px] bg-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+        </Link>
         {isAuth ? (
-          <Link to="/account" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">100Account</Link>
+          <Link
+            to="/account"
+            className="relative py-2 px-4 hover:bg-teal-200 rounded-md transition duration-300 group"
+          >
+            Account
+            <span className="absolute left-0 bottom-0 w-full h-[2px] bg-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+          </Link>
         ) : (
-          <Link to="/login" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">100Login</Link>
+          <Link
+            to="/login"
+            className="relative py-2 px-4 hover:bg-teal-200 rounded-md transition duration-300 group"
+          >
+            Login
+            <span className="absolute left-0 bottom-0 w-full h-[2px] bg-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+          </Link>
         )}
-      </div>
+      </nav>
 
-      {/* Mobile Menu - Toggles visibility */}
-      <div className={`flex flex-col gap-5 p-10 rounded-lg shadow-lg absolute top-16 right-5 bg-gradient-to-r from-[rgb(57,57,57)] via-[rgb(130,130,130)] to-[rgb(5,11,14)] transition-all duration-300 ${menuOpen ? "block" : "hidden"} z-60`}> {/* Add z-index here */}
-        <Link to="/" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">o1Home</Link>
-        <Link to="/courses" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">10Courses</Link>
-      
-        {isAuth ? (
-          <Link to="/account" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">100Account</Link>
-        ) : (
-          <Link to="/login" className="text-slate-200 text-xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-300 font-bold">100Login</Link>
-        )}
+      {/* Mobile Dropdown Menu */}
+      <div
+        className={`absolute top-20 right-0 w-64 p-6 bg-white rounded-lg shadow-xl transition-all duration-300 ease-in-out transform ${
+          menuOpen ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"
+        }`}
+      >
+        <Dropdown overlay={menu} trigger={['click']} className="w-full">
+          <Button className="w-full text-lg bg-teal-100 hover:bg-teal-200">
+            Menu <DownOutlined />
+          </Button>
+        </Dropdown>
       </div>
     </header>
   );

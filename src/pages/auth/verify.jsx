@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../../context/UserContext";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Input, Button } from "antd";
 
 const Verify = () => {
   const [otp, setOtp] = useState("");
@@ -21,31 +22,40 @@ const Verify = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[80vh] ">
-      <div className="bg-gray-100 p-8 rounded-lg shadow-md text-center w-fit md:w-[400px] lg:w-[400px]">
+    <div className="flex items-center justify-center h-[80vh]">
+      <div className="bg-white p-8 rounded-lg shadow-md text-center w-fit md:w-[400px] lg:w-[400px]">
         <h2 className="text-2xl text-cyan-400 mb-4">Verify Account</h2>
         <form onSubmit={submitHandler} className="text-left">
           <label htmlFor="otp" className="block mb-1 text-sm text-gray-800">
-            Otp
+            OTP
           </label>
-          <input
+          <Input
             type="number"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
+            placeholder="Enter OTP"
             required
-            className="w-full p-2 mb-4 border border-gray-300 rounded"
+            className="mb-4"
           />
-          <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChange} />
+          
+          <ReCAPTCHA 
+            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
+            onChange={onChange} 
+            className="mb-4"
+          />
+
           {show && (
-            <button
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="w-full py-2 mt-2"
               disabled={btnLoading}
-              type="submit"
-              className="common-btn w-full py-2 bg-cyan-700 text-white rounded mt-2"
             >
               {btnLoading ? "Please Wait..." : "Verify"}
-            </button>
+            </Button>
           )}
         </form>
+
         <p className="mt-4">
           Go to{" "}
           <Link to="/login" className="text-cyan-700 hover:underline">

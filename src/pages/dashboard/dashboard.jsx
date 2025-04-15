@@ -13,15 +13,15 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="py-20 text-center min-h-[55vh] bg-gradient-to-t from-[rgb(55,56,56)] to-[#858585]">
-      <h2 className="text-2xl font-semibold mb-10">All Enrolled Courses</h2>
-      <div className="flex justify-around flex-wrap gap-5 mt-10">
+    <div className="py-20 text-center min-h-[55vh]  bg-gradient-to-b from-slate-50 to-teal-100">
+      <h2 className="text-3xl font-semibold text-gray-900 mb-10">All Enrolled Courses</h2>
+      <div className="flex justify-center flex-wrap gap-5 mt-10">
         {purchasedCourses && purchasedCourses.length > 0 ? (
           purchasedCourses.map((course) => (
             <CourseCard key={course._id} course={course} />
           ))
         ) : (
-          <p>No courses enrolled yet</p>
+          <p className="text-lg text-gray-600">No courses enrolled yet</p>
         )}
       </div>
     </div>
